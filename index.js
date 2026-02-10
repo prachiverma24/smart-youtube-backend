@@ -10,7 +10,15 @@ const videoRoutes = require('./routes/videoRoutes');
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable CORS for frontend requests
+// CORS configuration for production and development
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['http://localhost:3000'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json()); // Parse JSON request bodies
 
 // Connect to MongoDB
