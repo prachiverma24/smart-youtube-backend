@@ -1,0 +1,3 @@
+import sys
+from youtube_transcript_api import YouTubeTranscriptApi
+print(dir(YouTubeTranscriptApi))
